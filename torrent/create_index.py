@@ -12,6 +12,9 @@ from pathlib import Path
 
 qtorrent_url = 'http://localhost:8084/api/v2'
 
+if not len(sys.argv) > 1:
+    raise RuntimeError('pass path to torrent index file as argument')
+
 torrent_list = requests.get(f'{qtorrent_url}/torrents/info').json()
 
 torrent_index = []
@@ -26,13 +29,13 @@ for torrent in torrent_list:
     except NotADirectoryError as e:
         # TODO: what if torrent is downloaded as single file ?
         print(e)
-        
-                
+
     torrent_info = {
-    'hash': torrent['hash'],
-    'magnet_uri': torrent['magnet_uri'],
-    'path': torrent['content_path'],
-    'name': torrent['name']
+        'hash': torrent['hash'],
+        'magnet_uri': torrent['magnet_uri'],
+        'path': torrent['content_path'],
+        'name': torrent['name'],
+        'category': torrent['category'],
     }
     torrent_index.append(torrent_info)
 
