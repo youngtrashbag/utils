@@ -1,3 +1,9 @@
+"""
+Create a json file that contains an array of relevant data for each torrent
+
+Works only with qBittorrent WebUI running
+"""
+
 import os
 import sys
 import json
