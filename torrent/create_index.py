@@ -20,14 +20,19 @@ torrent_list = requests.get(f'{qtorrent_url}/torrents/info').json()
 torrent_index = []
 
 for torrent in torrent_list:
-    t_path = Path(torrent['content_path']) /'magnet'
+    t_path = Path(torrent['content_path'])
+
     try:
-        with open(t_path, mode='w', encoding='UTF-8') as m_file:
-            m_file.write(torrent['magnet_uri'])
+        if not os.path.isdir(t_path):
+            with open(t_path.parent / f'{torrent["hash"]}-magnet', mode='w', encoding='UTF-8') as m_file:
+                m_file.write(torrent['magnet_uri'])
+        else:
+            with open(t_path / 'magnet', mode='w', encoding='UTF-8') as m_file:
+                m_file.write(torrent['magnet_uri'])
+
     except FileNotFoundError as e:
         print(e)
     except NotADirectoryError as e:
-        # TODO: what if torrent is downloaded as single file ?
         print(e)
 
     torrent_info = {
