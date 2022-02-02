@@ -1,18 +1,20 @@
 #!/bin/bash
 
+source .env
+
 if [[ $1 == 'push' ]] || [[ $1 == 'upload' ]]; then
     echo WARNING: This is a potentially destructive action! [N/y]
     read continue_option
 
     if [[ ${continue_option,,} == 'y' ]]; then
         echo pushing
-        rclone sync -P ~/Documents/google_drive/passwords.kdbx google_drive:
+        rclone sync -P $KDBX_PATH google_drive:
     else
         echo ABORTED UPLOAD
     fi
 
 else
     echo pulling
-    rclone sync google_drive:passwords.kdbx ~/Documents/google_drive -P
+    rclone sync google_drive:passwords.kdbx $(dirname $KDBX_PATH) -P
 fi
 
