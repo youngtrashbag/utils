@@ -34,16 +34,20 @@ usage
     - path
     - name (name of the root object, most of the time its a folder, but can be a single file as well)
 
-# `unzip.sh`
+### `load_index.py`
+
+adds the torrents to the qbittorrent client, with the previously created index
+
+## `unzip.sh`
 
 unzips all `.zip` files in a directory, and puts the contents into folders by the same name of the zip file,
 except for removing the extension
 
-# `convert.sh`
+## `convert.sh`
 
 converts iphone photos (`.HEIC`) to `.jpg` via `heif-convert`
 
-# `start_librespot.sh`
+## `start_librespot.sh`
 
 very lazy way to start [librespot](https://github.com/librespot-org/librespot)
 
