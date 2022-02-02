@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """
 Create a json file that contains an array of relevant data for each torrent
 
