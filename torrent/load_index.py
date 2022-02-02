@@ -1,3 +1,10 @@
+#!/usr/bin/python3
+"""
+Read the index file, that has been created with create_index.py
+
+Add all the torrents to the client
+"""
+
 import os
 import sys
 import json
@@ -20,14 +27,13 @@ with open(index_path, mode='r', encoding='UTF-8') as index_file:
 
 for torrent in torrent_index:
     data = {
-        'url': torrent['magnet_uri'],
-        'save_path': Path(torrent['path']).parent,
-        'category': torrent['category']
+        'urls': (None, torrent['magnet_uri']),
+        'savepath': (None, str(Path(torrent['path']).parent)),
+        'category': (None, torrent['category']),
     }
 
-    response = requests.post(f'{qtorrent_url}/torrents/add', data=data)
+    response = requests.post(f'{qtorrent_url}/torrents/add', files=data)
 
     # response staus 200, text is 'Fails.'
     print(response.text)
-    print(data)
 
