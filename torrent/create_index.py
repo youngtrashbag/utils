@@ -21,7 +21,7 @@ torrent_list = requests.get(f'{qtorrent_url}/torrents/info').json()
 torrent_index = []
 
 for torrent in torrent_list:
-    t_path = Path(torrent['content_path'])
+    t_path = Path(torrent['save_path'])
 
     try:
         if not os.path.isdir(t_path):
@@ -39,7 +39,7 @@ for torrent in torrent_list:
     torrent_info = {
         'hash': torrent['hash'],
         'magnet_uri': torrent['magnet_uri'],
-        'path': torrent['content_path'],
+        'path': torrent['save_path'],
         'name': torrent['name'],
         'category': torrent['category'],
     }
