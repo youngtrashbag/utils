@@ -34,6 +34,6 @@ for torrent in torrent_index:
 
     response = requests.post(f'{qtorrent_url}/torrents/add', files=data)
 
-    # response staus 200, text is 'Fails.'
+    # text will either be 'Ok.' or 'Fails.'
     print(response.text)
 

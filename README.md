@@ -24,7 +24,7 @@ usage
 
 usage
 
-`python3 create_index.py torren_index.json`
+`python3 create_index.py torrent_index.json`
     creates file in json format, which contains info on all torrents
     
     such as:
@@ -34,9 +34,22 @@ usage
     - path
     - name (name of the root object, most of the time its a folder, but can be a single file as well)
 
+> Note: this also creates a file `magnet`, which contains the magnet URI
+
 ### `load_index.py`
 
 adds the torrents to the qbittorrent client, with the previously created index
+
+### `load_magnets.py`
+
+scans the immediate subdirectories for `magnet` files.
+they will then be added to the qbittorrent client
+
+usage
+
+`python3 load_magnets.py /home/movies`
+    scans all subdirectories of `/home/movies`,
+    if file called `magnet` is found, it will add them to qbittorrent
 
 ## `unzip.sh`
 
