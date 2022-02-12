@@ -24,7 +24,7 @@ usage
 
 usage
 
-`python3 create_index.py torrent_index.json`
+`python3 create_index.py torrent_index.json`  
     creates file in json format, which contains info on all torrents
     
     such as:
@@ -40,6 +40,10 @@ usage
 
 adds the torrents to the qbittorrent client, with the previously created index
 
+usage
+
+`python3 load_index.py torrent_index.json`
+
 ### `load_magnets.py`
 
 scans the immediate subdirectories for `magnet` files.
@@ -47,9 +51,21 @@ they will then be added to the qbittorrent client
 
 usage
 
-`python3 load_magnets.py /home/movies`
+`python3 load_magnets.py /home/movies`  
     scans all subdirectories of `/home/movies`,
     if file called `magnet` is found, it will add them to qbittorrent
+
+### `clear_magnets.py`
+
+scans the immediate subdirectories for `magnet` files.
+if the directory is empty, delete it
+
+(When deleting via qBittorrent client,
+magnet files will not automatically get removed)
+
+usage
+
+`python3 clear_magnets.py /home/movies`
 
 ## `unzip.sh`
 
