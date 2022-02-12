@@ -24,6 +24,8 @@ for torrent in torrent_list:
     t_path = Path(torrent['save_path'])
 
     try:
+        # TODO: fix bug where in the parent dir a magnet file is created
+        # (e.g. /media/movies file /media/movies/magnet is created)
         if not os.path.isdir(t_path):
             with open(t_path.parent / f'{torrent["hash"]}-magnet', mode='w', encoding='UTF-8') as m_file:
                 m_file.write(torrent['magnet_uri'])
@@ -42,6 +44,8 @@ for torrent in torrent_list:
         'path': torrent['save_path'],
         'name': torrent['name'],
         'category': torrent['category'],
+        # separated by comma
+        'tags': torrent['tags'],
     }
     torrent_index.append(torrent_info)
 
