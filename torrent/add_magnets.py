@@ -1,5 +1,10 @@
 #!/usr/bin/python3
 """
+Scan subdirectories for 'magnet' file, containing the magnet uri.
+The torrent will then be added to the qBittorrent client.
+
+usage:
+    add_magnet.py /media/movies
 """
 
 import os
@@ -7,6 +12,7 @@ import sys
 import json
 import requests
 from pathlib import Path
+from os.path import basename
 
 qtorrent_url = 'http://localhost:8084/api/v2'
 
@@ -36,5 +42,5 @@ for savepath, magnet_url in torrents.items():
 
     response = requests.post(f'{qtorrent_url}/torrents/add', files=data)
 
-    # text will either be 'Ok.' or 'Fails.'
-    print(response.text)
+    # info on which torrents failed and which succeeded
+    print('{}: {}'.format(response.text[:-1], basename(Path(savepath).parent)))
