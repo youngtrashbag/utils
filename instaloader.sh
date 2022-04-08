@@ -14,5 +14,6 @@ python3 -m instaloader \
     --fast-update \
     --dirname-pattern="${ARCHIVE_DIR}/{profile}" \
     --filename-pattern='{date_utc:%Y}/{date_utc:%m-%b}/{date_utc:%a-%d_%H-%M}' \
+    --abort-on=302,400,429 \
     yunglean2001 dg_bladee \
     >> "${LOG_DIR}/${LOG_NAME}"
