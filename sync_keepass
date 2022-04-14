@@ -2,7 +2,11 @@
 
 source .env
 
-if [[ $1 == 'push' ]] || [[ $1 == 'upload' ]]; then
+if [[ $1 == 'pull' ]] || [[ $1 == 'download' ]] || [[ $1 == 'down' ]]; then
+    echo pulling
+    rclone sync google_drive:passwords.kdbx $(dirname $KDBX_PATH) -P
+elif [[ $1 == 'push' ]] || [[ $1 == 'upload' ]] || [[ $1 == 'up' ]]; then
+    echo pushing
     echo WARNING: This is a potentially destructive action! [N/y]
     read continue_option
 
@@ -12,9 +16,7 @@ if [[ $1 == 'push' ]] || [[ $1 == 'upload' ]]; then
     else
         echo ABORTED UPLOAD
     fi
-
 else
-    echo pulling
-    rclone sync google_drive:passwords.kdbx $(dirname $KDBX_PATH) -P
+    echo "Please choose either 'pull' or 'push' option"
 fi
 
