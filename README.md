@@ -41,3 +41,8 @@ requirements:
 
 - python3
 - [instaloader](https://github.com/instaloader/instaloader)
+
+## `docker-service.sh`
+
+empty script that start, restart and stop functions that can be called directly.
+can also be used without docker
